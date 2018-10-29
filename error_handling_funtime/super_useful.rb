@@ -11,20 +11,47 @@ end
 FRUITS = ["apple", "banana", "orange"]
 
 def reaction(maybe_fruit)
-  if FRUITS.include? maybe_fruit
     puts "OMG, thanks so much for the #{maybe_fruit}!"
-  else 
-    raise StandardError 
-  end 
 end
 
 def feed_me_a_fruit
   puts "Hello, I am a friendly monster. :)"
 
   puts "Feed me a fruit! (Enter the name of a fruit:)"
-  maybe_fruit = gets.chomp
-  reaction(maybe_fruit) 
-end  
+  
+  begin
+    maybe_fruit = gets.chomp
+    if FRUITS.include?(maybe_fruit)
+      reaction(maybe_fruit)
+    else
+      raise "That's not a fruit"
+    end
+  rescue
+    puts "That's not a fruit. If you want a second chance, give me coffee"
+    if gets.chomp == "coffee"
+      puts "Okay, try again"
+      retry 
+    end
+  end
+end 
+
+# def reaction
+#   begin
+#     maybe_fruit = gets.chomp
+#     raise "that's not a fruit, feed me coffee to try again" unless FRUITS.include? maybe_fruit
+#     puts "OMG, thanks so much for the #{maybe_fruit}!"
+#   rescue
+#     puts "Thanks for the coffee try again" if maybe_fruit == 'coffee'
+#     retry if maybe_fruit == "coffee"
+#   end 
+# end
+# 
+# def feed_me_a_fruit
+#   puts "Hello, I am a friendly monster. :)"
+# 
+#   puts "Feed me a fruit! (Enter the name of a fruit:)"
+#   reaction
+# end  
 
 # PHASE 4
 class BestFriend
