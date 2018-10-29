@@ -2,7 +2,7 @@
 def convert_to_int(str)
   begin
     Integer(str)
-  rescue
+  rescue ArgumentError
     nil
   end
 end
