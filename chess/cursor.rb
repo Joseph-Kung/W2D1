@@ -80,13 +80,13 @@ class Cursor
     when :return || :space
       @cursor_pos
     when :left
-      update_pos([-1, 0])
-    when :right
-      update_pos([1, 0])
-    when :up
       update_pos([0, -1])
-    when :down
+    when :right
       update_pos([0, 1])
+    when :up
+      update_pos([-1, 0])
+    when :down
+      update_pos([1, 0])
     when :ctrl_c
       Process.exit(0)
     end

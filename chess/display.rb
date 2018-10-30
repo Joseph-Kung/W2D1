@@ -7,21 +7,39 @@ class Display
     @cursor = Cursor.new([0, 0], board)
   end
   
+  def play
+    while true
+      render
+      @cursor.get_input
+      system("clear")
+    end
+  end
+  
   def render
-    @board.grid.each do |row|
-      puts render_row(row)
+    @board.grid.each_with_index do |row, i|
+      puts render_row(row, i)
     end
     
     inspect
   end
   
-  def render_row(row)
+  def render_row(row, i)
+    cursor_pos = @cursor.cursor_pos
+    
     result = ""
-    row.each do |piece|
+    row.each_with_index do |piece, idx|
       if piece.is_a?(NullPiece)
-        result << "   "
+        if cursor_pos == [i, idx]
+          result << " _ ".colorize(:red)
+        else
+          result << " _ "
+        end
       else
-        result << " x "
+        if cursor_pos == [i, idx]
+          result << " x ".colorize(:red)
+        else
+          result << " x "
+        end
       end
     end
     result
