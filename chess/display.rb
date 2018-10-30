@@ -30,13 +30,13 @@ class Display
     row.each_with_index do |piece, idx|
       if piece.is_a?(NullPiece)
         if cursor_pos == [i, idx]
-          result << " _ ".colorize(:red)
+          result << "   ".colorize(:background => :red)
         else
-          result << " _ "
+          result << "   "
         end
       else
         if cursor_pos == [i, idx]
-          result << " x ".colorize(:red)
+          result << " x ".colorize(:background => :red)
         else
           result << " x "
         end
